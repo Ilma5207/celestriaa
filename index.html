@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Celestia | Fine Dining Restaurant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    html {
+  scroll-behavior: smooth;
+}
+    :root {
+      --pastel-pink: #fce4ec;
+      --pastel-peach: #ffe0b2;
+      --pastel-cream: #fff8e1;
+      --primary-color: #8a5f7c;
+      --text-color: #3f2d2d;
+      --button-color: black;
+      --button-hover: #3f2d2d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--pastel-cream);
+      color: var(--text-color);
+    }
+
+    header {
+      height: 70vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px;
+      color: rgb(52, 33, 11);
+    }
+
+    .header-box {
+    background-color: rgba(255, 248, 242, 0.85); /* Soft nude background */
+    /* border: 2px solid #e0c3b3; Subtle border */
+    border-radius: 16px; /* Rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    padding: 40px 10px;
+    max-width: 1000px;
+    margin: 40px auto; /* Center the box */
+    text-align: center;
+    }
+
+    /* header img {
+      max-width: 180px;
+      margin-bottom: 20px;
+    } */
+
+    header h1 {
+      font-size: 4.2em;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    header p {
+      font-size: 1.8em;
+      margin-bottom: 30px;
+    }
+    
+
+    section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    section h2 {
+      font-size: 3.4em;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-align: center;
+      color: rgb(52, 33, 11);
+    }
+
+    .story, .ambience {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .story-text, .ambience-text {
+      font-size: 1.4em;
+      line-height: 1.6;
+      text-align: justify;
+      color: rgb(52, 33, 11);
+    }
+
+    /* .gallery, .menu-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .menu-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background-color: white;
+    }
+
+    .menu-table th, .menu-table td {
+      border: 1px solid rgb(106, 73, 52);
+      padding: 15px;
+      text-align: center;
+    }
+
+    .menu-table th {
+      background-color: #ad8871;
+      color: #333;
+    }
+
+    .menu-image {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+    } */
+
+    .menu-section {
+      padding: 60px 30px;
+      max-width: 2000px;
+      max-height: auto;
+      margin: auto;
+    }
+
+    .menu-heading {
+      text-align: center;
+      font-size: 50px;
+      font-weight: 700;
+      color: rgb(52, 33, 11);
+      margin-bottom: 20px;
+    }
+
+    .category-title {
+      font-size: 35px;
+      color: rgb(52, 33, 11);
+      margin: 50px 0 20px;
+      border-bottom: 3px solid rgb(52, 33, 11);
+      padding-bottom: 10px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .menu-card {
+      background-color: #bb9b7d;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .menu-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .menu-content {
+      padding: 15px 20px;
+    }
+
+    .menu-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: rgb(52, 33, 11);
+      margin: 10px 0 5px;
+    }
+
+    .menu-desc {
+      font-size: 14px;
+      color: rgb(52, 33, 11);
+      margin-bottom: 10px;
+    }
+
+    .menu-price {
+      font-weight: bold;
+      color: rgb(52, 33, 11);
+      font-size: 16px;
+    }
+
+    .reservation-section {
+  background-color: #bb9b7d;
+  padding: 80px 20px;
+  border-top: 2px solid rgb(52, 33, 11);
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+}
+
+.reservation-container h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: rgb(52, 33, 11);
+}
+
+.subtext {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: rgb(52, 33, 11);
+}
+
+.reservation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 500px;
+  margin: auto;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.reservation-form input {
+  flex: 1;
+  padding: 14px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid rgb(52, 33, 11);
+  background-color: white;
+}
+
+.reserve-btn {
+  padding: 14px 30px;
+  background-color: rgb(52, 33, 11);
+  color: #fff;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reserve-btn:hover {
+  background-color: #6e543b;
+}
+
+.confirmation {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: rgb(52, 33, 11);
+}
+
+    #gallery {
+  padding: 50px 20px;
+  background-color: #bb9b7d;
+}
+
+#gallery h2 {
+  font-size: 50px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.horizontal-gallery {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.horizontal-gallery img {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  scroll-snap-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.horizontal-gallery img:hover {
+  transform: scale(1.05);
+}
+.gallery-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.horizontal-gallery {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+}
+
+.horizontal-gallery img {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  scroll-snap-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.horizontal-gallery img:hover {
+  transform: scale(1.05);
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.scroll-btn:hover {
+  background: rgba(200, 200, 200, 0.8);
+}
+
+.scroll-btn.left {
+  left: 0;
+}
+
+.scroll-btn.right {
+  right: 0;
+}
+
+</style>
+</head>
+<body>
+    <div class="pic">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/rooftop1.jpg" alt="rooftop" width=100% height=auto>
+    </div>
+  <header>
+    <section id="home">
+    <img src="/Users/ilmakhan/Downloads/vs/celestria/Screenshot 2025-04-12 at 10.05.37 PM.jpeg" alt="Celestria Logo" height="285" width="325">
+    <h1>Welcome to Celestria</h1>
+    <p>A Taste of Romance, Under the Celestial Sky</p>
+    
+</section>
+  </header>
+
+  <div style="height: 15px; background-color: rgb(52, 33, 11); margin: 20px auto; width: 100%;"></div>
+
+  <section id="our-story">
+    <h2><b>Our Story</b></h2>
+    <div class="story">
+      <div class="story-text">
+        <h3>Crafted for the Curious Romantic</h3>
+        <p>Celestria was born from a desire to create a space that feels like magic — open-air skies above, dimly lit tables below, and a menu that excites the explorer within.</p>
+        <p>We believe food should be fun, fearless, and full of love — that's why we serve globally-inspired dishes with a hint of the fusion. From fusion pizzas with Indian soul to handmade baos, buns, panini breads and elevated burgers — each dish is a blend of creativity, comfort, and craft.</p>
+        <p>Celestria is a celebration of flavor, friendship, and fantasy — for those who love to try something interesting, together.</p>
+      </div>
+      <img src="/Users/ilmakhan/Downloads/vs/celestria/umi.jpg" alt="Our Story Image" height="600" width="550">
+    </div>
+  </section>
+
+  <div style="height: 15px; background-color: rgb(52, 33, 11); margin: 40px auto; width: 100%;"></div>
+
+  <section id="ambience">
+    <h2><b>Ambience & Experience</b></h2>
+    <div class="ambience">
+      <img src="/Users/ilmakhan/Downloads/vs/celestria/rooftop 2.jpg" alt="Ambience Image" width="600" height="550">
+      <div class="ambience-text">
+        <ul>
+          <li><strong>Open-Air Dining:</strong> A roofless haven under the stars.</li>
+          <li><strong>Fountain Courtyard:</strong> A tranquil touch to your evening.</li>
+          <li><strong>Dim Romantic Lighting:</strong> Vintage charm meets modern glow.</li>
+          <li><strong>Fine Dining Service:</strong> Elegant yet relaxed.</li>
+          <li><strong>For Everyone:</strong> Couples, friends, families, and travelers alike.</li>
+        </ul>
+        <p><em>“The stars above and flavors below — Celestria gave us a perfect evening.” – ⭐⭐⭐⭐⭐</em></p>
+      </div>
+    </div>
+  </section>
+
+  <div style="height: 15px; background-color: rgb(52, 33, 11); margin: 40px auto; width: 100%;"></div>
+
+  <!-- <section id="menu">
+    <h2><b>Our Menu</b></h2>
+    <div class="menu-gallery">
+      <table class="menu-table">
+        <tr>
+          <th>Dish</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Image</th>
+        </tr>
+        <tr>
+          <td>Smash Cheese Burger</td>
+          <td>Classic American smash patty, cheddar, caramelized onions, and secret sauce.</td>
+          <td>₹380</td>
+          <td><img src="https://source.unsplash.com/100x100/?burger" class="menu-image"></td>
+        </tr>
+      </table>
+    </div>
+  </section> -->
+
+  <section id="menu-section">
+    <h1 class="menu-heading"><b>Our Menu</b></h1>
+
+    <h2 class="category-title"><b>Soups</b></h2>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Carrot Lentil Soup.jpg" alt="Carrot Lentil Soup">
+        <div class="menu-content">
+          <div class="menu-title">Carrot Lentil Soup</div>
+          <div class="menu-desc">A wholesome blend of carrots and red lentils, mildly spiced.</div>
+          <div class="menu-price">₹170</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Cream of Broccoli Soup.jpg" alt="Cream of Broccoli Soup">
+        <div class="menu-content">
+          <div class="menu-title">Cream of Broccoli Soup</div>
+          <div class="menu-desc">Smooth, creamy soup made with fresh broccoli and a hint of garlic.</div>
+          <div class="menu-price">₹190</div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="category-title"><b>Salads</b></h2>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Sweet Potato Salad.jpg" alt="Thai Sweet Potato Salad">
+        <div class="menu-content">
+          <div class="menu-title">Thai Sweet Potato Salad</div>
+          <div class="menu-desc">Roasted sweet potatoes tossed in a tangy Thai-style dressing.</div>
+          <div class="menu-price">₹169</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Avocado Salad.jpg" alt="Avocado Spinach Arugula Salad">
+        <div class="menu-content">
+          <div class="menu-title">Avocado Spinach Arugula Salad</div>
+          <div class="menu-desc">Fresh greens with creamy avocado, blueberries, apple and a zesty citrus vinaigrette.</div>
+          <div class="menu-price">₹179</div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="category-title"><b>Starters</b></h2>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/French Fries.jpeg" alt="French Fries">
+        <div class="menu-content">
+          <div class="menu-title">French Fries</div>
+          <div class="menu-desc">Classic golden fries, lightly salted.</div>
+          <div class="menu-price">₹199</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Peri Peri Fries.jpeg" alt="Peri Peri Fries">
+        <div class="menu-content">
+          <div class="menu-title">Peri Peri Fries</div>
+          <div class="menu-desc">Crisp fries tossed in spicy peri peri seasoning.</div>
+          <div class="menu-price">₹200</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Crinkeled Sweet Potato Fries.jpeg" alt="Crinkled Sweet Potato Fries">
+        <div class="menu-content">
+          <div class="menu-title">Crinkled Sweet Potato Fries</div>
+          <div class="menu-desc">Crunchy, sweet, crinkled-cut fries.</div>
+          <div class="menu-price">₹220</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Cheese Corn Dog.jpeg" alt="Cheese Corn Dogs">
+        <div class="menu-content">
+          <div class="menu-title">Cheese Corn Dogs</div>
+          <div class="menu-desc">Cheesy cornmeal battered dogs with peri peri or Mexican seasoning.</div>
+          <div class="menu-price">₹200</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Buldak Balls.jpeg" alt="Buldak Arancini Balls">
+        <div class="menu-content">
+          <div class="menu-title">Buldak Arancini Balls</div>
+          <div class="menu-desc">Spicy Korean-style arancini stuffed with fiery chicken and mozzarella.</div>
+          <div class="menu-price">₹250</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Rice Paper Rolls.jpeg" alt="Crispy Rice Paper Rolls">
+        <div class="menu-content">
+          <div class="menu-title">Crispy Rice Paper Rolls</div>
+          <div class="menu-desc">Crunchy fried rolls filled with a mix of Asian vegetables.</div>
+          <div class="menu-price">₹200</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Sotteok.jpeg" alt="Sotteok">
+        <div class="menu-content">
+          <div class="menu-title">Sotteok</div>
+          <div class="menu-desc">Korean rice cakes and sausage skewers in sweet-spicy glaze.</div>
+          <div class="menu-price">₹280</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Paneer Tikka.jpeg" alt="Paneer Tikka">
+        <div class="menu-content">
+          <div class="menu-title">Paneer Tikka</div>
+          <div class="menu-desc">Char-grilled paneer cubes marinated in spiced yogurt and herbs.</div>
+          <div class="menu-price">₹280</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Chicken Satay.jpeg" alt="Thai Chicken Satay">
+        <div class="menu-content">
+          <div class="menu-title">Thai Chicken Satay</div>
+          <div class="menu-desc">Chicken skewers grilled with lemongrass and served with peanut sauce.</div>
+          <div class="menu-price">₹300</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BURGERS -->
+    <h2 class="category-title"><b>Burgers(Veg & Non-Veg)</b></h2>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/smash cheese burger.jpg" alt="Smash Cheese Burger(Non-Veg)">
+        <div class="menu-content">
+          <div class="menu-title">Smash Cheese Burger</div>
+          <div class="menu-desc">Classic American smash patty, cheddar, caramelized onions, and secret sauce in a soft bun.</div>
+          <div class="menu-price">₹380</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/butter chicken burger.jpg" alt="Butter Chicken Burger(Non-Veg)">
+        <div class="menu-content">
+          <div class="menu-title">Butter Chicken Burger</div>
+          <div class="menu-desc">Makhani-spiced chicken patty, creamy butter chicken sauce.</div>
+          <div class="menu-price">₹360</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/butter paneer burger.jpg" alt="Butter Paneer Burger(Veg)">
+        <div class="menu-content">
+          <div class="menu-title">Butter Paneer Burger</div>
+          <div class="menu-desc">Grilled paneer steak, butter masala glaze, crunchy onions.</div>
+          <div class="menu-price">₹320</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/korean chicken.jpg" alt="Korean Chicken Burger(Non-Veg)">
+        <div class="menu-content">
+          <div class="menu-title">Korean Chicken Burger</div>
+          <div class="menu-desc">Crispy Korean fried chicken, gochujang mayo, pickled slaw.</div>
+          <div class="menu-price">₹320</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/korean tofu.jpg" alt="Korean Tofu Burger(Veg)">
+        <div class="menu-content">
+          <div class="menu-title">Korean Tofu Burger</div>
+          <div class="menu-desc">Korean-marinated tofu, spicy mayo, crunchy pickled veg.</div>
+          <div class="menu-price">₹320</div>
+        </div>
+      </div>
+
+    </div>
+
+
+    
+
+    <!-- Add similar sections for Pizzas, Baos, Pasta, Soups, Salads, Beverages -->
+
+    <h2 class="category-title"><b>Pizzas</b></h2>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Pesto veg Pizza.jpg" alt="Pesto Pizza(Veg)">
+        <div class="menu-content">
+          <div class="menu-title">Pesto Pizza(Veg)</div>
+          <div class="menu-desc">Basil pesto, mozzarella, in-house sun-dried tomatoes, mushrooms.</div>
+          <div class="menu-price">7 inch: ₹290 <br> 9 inch: ₹390 <br> 12 inch: ₹530 </div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Pesto Chicken Pizza.jpg" alt="Pesto Chicken Pizza">
+        <div class="menu-content">
+          <div class="menu-title">Pesto Chicken Pizza(Non-Veg)</div>
+          <div class="menu-desc">Basil pesto, grilled chicken, sun-dried tomatoes, mozzarella.</div>
+          <div class="menu-price">7 inch: ₹310 <br> 9 inch: ₹420 <br> 12 inch: ₹570 </div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Margherita Pizza.jpg" alt="Margherita Pizza">
+        <div class="menu-content">
+          <div class="menu-title">Margherita Pizza</div>
+          <div class="menu-desc">Classic tomato base, mozzarella, fresh basil</div>
+          <div class="menu-price">7 inch: ₹250 <br> 9 inch: ₹360 <br> 12 inch: ₹490 </div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Farmhouse Pizza.jpg" alt="Farmhouse Pizza (Veg)">
+        <div class="menu-content">
+          <div class="menu-title">Farmhouse Pizza (Veg)</div>
+          <div class="menu-desc">Bell peppers, mushrooms, onions, olives, mozzarella</div>
+          <div class="menu-price">7 inch: ₹270 <br> 9 inch: ₹370 <br> 12 inch: ₹510 </div>
+        </div>
+      </div>
+
+    </div>
+
+    <h2 class="category-title">Baos</h2>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Tofu Bao.jpeg" alt="Fried Teriyaki Tofu Bao">
+        <div class="menu-content">
+          <div class="menu-title">Fried Teriyaki Tofu Bao</div>
+          <div class="menu-desc">Tofu glazed in teriyaki sauce with crunchy slaw and sriracha mayo.</div>
+          <div class="menu-price">₹250</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Chicken Bao.jpeg" alt="Honey Chilli Chicken Bao">
+        <div class="menu-content">
+          <div class="menu-title">Honey Chilli Chicken Bao</div>
+          <div class="menu-desc">Crispy chicken tossed in sweet & spicy honey-chilli sauce.</div>
+          <div class="menu-price">₹280</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Oyster Bao.jpeg" alt="Sticky Pulled Oyster Chicken Bao">
+        <div class="menu-content">
+          <div class="menu-title">Sticky Pulled Oyster Chicken Bao</div>
+          <div class="menu-desc">Slow-cooked chicken with oyster glaze and pickled veggies.</div>
+          <div class="menu-price">₹270</div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="category-title"><b>Main Course</b></h2>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Pasta.jpeg" alt="Aglio Olio Pasta (Veg)">
+        <div class="menu-content">
+          <div class="menu-title">Aglio Olio Pasta (Veg)</div>
+          <div class="menu-desc">Spaghetti tossed in garlic, olive oil, and chili flakes.</div>
+          <div class="menu-price">₹200</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Chicken mc.jpeg" alt="Grilled Chicken w/ Honey Orange Glaze">
+        <div class="menu-content">
+          <div class="menu-title">Grilled Chicken w/ Honey Orange Glaze</div>
+          <div class="menu-desc">Tender chicken breast with zesty citrus glaze.</div>
+          <div class="menu-price">₹300</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Lamb Chops.jpeg" alt="Lamb Chops with Demi Glace">
+        <div class="menu-content">
+          <div class="menu-title">Lamb Chops with Demi Glace</div>
+          <div class="menu-desc">Herb-marinated lamb served with a rich demi-glace sauce.</div>
+          <div class="menu-price">₹350</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Lemon Chicken.jpeg" alt="Herb-Crusted Salmon">
+        <div class="menu-content">
+          <div class="menu-title">Herb-Crusted Salmon</div>
+          <div class="menu-desc">Salmon fillet baked with herbs, served with lemon butter sauce.</div>
+          <div class="menu-price">₹380</div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <h2 class="category-title"><b>Desserts</b></h2>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Strawberry pana cotta.jpg" alt="Strawberry Panna Cotta">
+        <div class="menu-content">
+          <div class="menu-title">Strawberry Panna Cotta</div>
+          <div class="menu-desc">Silky vanilla cream topped with fresh strawberry compote.</div>
+          <div class="menu-price">₹180</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Chocolate Desire.jpg" alt="Chocolate Desire">
+        <div class="menu-content">
+          <div class="menu-title">Chocolate Desire</div>
+          <div class="menu-desc">Layers of white and dark chocolate crémeux on a rich chocolate brownie base.</div>
+          <div class="menu-price">₹200</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Mille-Feuille.jpg" alt="Vanilla & Raspberry Mille-Feuille">
+        <div class="menu-content">
+          <div class="menu-title">Vanilla & Raspberry Mille-Feuille</div>
+          <div class="menu-desc">Delicate pastry layered with vanilla cream, raspberry coulis & lavender ice cream.</div>
+          <div class="menu-price">₹230</div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="category-title"><b>Beverages</b></h2>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Sparkling Berry lemonade.jpg" alt="Sparkling Berry Lemonade">
+        <div class="menu-content">
+          <div class="menu-title">Sparkling Berry Lemonade</div>
+          <div class="menu-desc">Fizzy lemonade with mixed berries and mint.</div>
+          <div class="menu-price">₹189</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="/Users/ilmakhan/Downloads/vs/celestria/Pink Spring House Cooler.jpg" alt="Pink Spring House Cooler">
+        <div class="menu-content">
+          <div class="menu-title">Pink Spring House Cooler</div>
+          <div class="menu-desc">Refreshing cooler with rose, lychee, and cotton candy.</div>
+          <div class="menu-price">₹179</div>
+        </div>
+      </div>
+    </div>
+</section>
+
+  <div style="height: 15px; background-color: rgb(52, 33, 11); margin: 40px auto; width: 100%;"></div>
+
+  <section id="reservations" class="reservation-section">
+    <div class="reservation-container">
+      <h2>Reserve a Table</h2>
+      <p class="subtext">Only <span id="seats-left">18</span> special seats with an open kitchen view. Book your magical evening now!</p>
+  
+      <form class="reservation-form" id="reservationForm">
+        <div class="form-row">
+          <input type="text" id="name" placeholder="Full Name" required>
+          <input type="number" id="guests" placeholder="Number of Guests (Max 4)" min="1" max="4" required>
+        </div>
+        <button type="submit" class="reserve-btn">Book Now</button>
+      </form>
+  
+      <p id="confirmation-msg" class="confirmation"></p>
+    </div>
+  </section>
+  <script>
+    function scrollGallery(direction) {
+      const gallery = document.getElementById("galleryScroll");
+      const scrollAmount = 320; // Width of one image + gap
+      gallery.scrollBy({
+        left: direction * scrollAmount,
+        behavior: "smooth"
+      });
+    }
+  </script>
+    <div style="height: 15px; background-color: rgb(52, 33, 11); margin: 40px auto; width: 100%;"></div>
+  <section id="gallery">
+    <h2><b>Gallery</b></h2>
+    <div class="horizontal-gallery" id="galleryScroll">
+      <button class="scroll-btn left" onclick="scrollGallery(-1)">&#10094;</button>
+      <img src="/Users/ilmakhan/Downloads/vs/celestria/gallery1.jpeg" alt="Gallery Image 1">
+      <img src="/Users/ilmakhan/Downloads/vs/celestria/gallery5.jpeg" alt="Gallery Image 2">
+      <img src="/Users/ilmakhan/Downloads/vs/celestria/gallery3.jpeg" alt="Gallery Image 3">
+      <img src="/Users/ilmakhan/Downloads/vs/celestria/gallery4.jpeg" alt="Gallery Image 4">
+      <img src="/Users/ilmakhan/Downloads/vs/celestria/gallery2.jpeg" alt="Gallery Image 5">
+
+      <button class="scroll-btn right" onclick="scrollGallery(1)">&#10095;</button>
+
+
+    </div>
+  </section>
+  <div style="height: 15px; background-color: rgb(52, 33, 11); margin: 40px auto; width: 100%;"></div>
+
+  
+  <footer style="background-color: #bb9b7d; padding: 40px 20px; font-family: 'Open Sans', sans-serif; color: rgb(52, 33, 11);">
+    <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between;">
+  
+      <!-- Logo & About -->
+      <div style="flex: 1 1 250px;">
+        <img src="//Users/ilmakhan/Downloads/vs/celestria/Screenshot 2025-04-12 at 10.05.37 PM.jpeg" alt="Celestia Logo" style="width: 120px; margin-bottom: 15px;">
+        <p style="font-size: 16px; line-height: 1.7;">
+          A fine-dine rooftop experience on Rajpur Road. Global flavors, romantic vibes, and a sky full of stars.
+        </p>
+      </div>
+  
+      <!-- Quick Links -->
+      <div style="flex: 1 1 180px;">
+        <h4 style="margin-bottom: 10px; font-size: 16px;">Quick Links</h4>
+        <nav>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="#home" style="color: rgb(52, 33, 11); text-decoration: none;">Home</a></li>
+          <li><a href="#our-story" style="color: rgb(52, 33, 11); text-decoration: none;">Our Story</a></li>
+          <li><a href="#ambience" style="color: rgb(52, 33, 11); text-decoration: none;">Ambience</a></li>
+          <li><a href="#menu-section" style="color: rgb(52, 33, 11); text-decoration: none;">Menu</a></li>
+          <li><a href="#reservations" style="color: rgb(52, 33, 11); text-decoration: none;">Reservations</a></li>
+
+
+          <!-- <li><a href="#reservations" style="color: black; text-decoration: none;">Reservations</a></li> -->
+        </ul>
+    </nav>
+      </div>
+  
+      <!-- Opening Hours -->
+      <div style="flex: 1 1 180px;">
+        <h4 style="margin-bottom: 10px; font-size: 16px;">Opening Hours</h4>
+        <p style="font-size: 14px; margin: 0;">Mon–Fri: 5 PM – 11 PM</p>
+        <p style="font-size: 14px; margin: 0;">Sat–Sun: 1 PM – 11:30 PM</p>
+      </div>
+  
+      <!-- Contact & Social -->
+      <div style="flex: 1 1 200px;">
+        <h4 style="margin-bottom: 10px; font-size: 16px;">Contact</h4>
+        <p style="font-size: 14px; margin: 0;">Rajpur Road, Dehradun, India</p>
+        <p style="font-size: 14px; margin: 5px 0;">📞 +91 98765 43210</p>
+        <p style="font-size: 14px; margin: 5px 0;">📧 hello@celestria.com</p>
+  
+        <div style="margin-top: 15px;">
+          <a href="#" style="margin-right: 10px;">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384005.png" alt="Instagram" style="width: 20px;">
+          </a>
+          <a href="#" style="margin-right: 10px;">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png" alt="Facebook" style="width: 20px;">
+          </a>
+          <a href="#">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384014.png" alt="Twitter" style="width: 20px;">
+          </a>
+        </div>
+      </div>
+  
+    </div>
+  
+    <div style="text-align: center; margin-top: 30px; font-size: 16px; color: black;">
+      © 2025 Celestria Restaurant. Designed with love under the stars ✨
+    </div>
+  </footer>
+
+  
+</body>
+</html>
